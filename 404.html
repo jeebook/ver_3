@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hello Ayush</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Floating background bubbles */
+.bubble {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    animation: float 12s infinite ease-in-out;
+}
+
+.bubble:nth-child(1) {
+    top: 10%;
+    left: 15%;
+    width: 120px;
+    height: 120px;
+}
+
+.bubble:nth-child(2) {
+    bottom: 20%;
+    right: 10%;
+    width: 180px;
+    height: 180px;
+    animation-delay: 4s;
+}
+
+.bubble:nth-child(3) {
+    top: 50%;
+    right: 30%;
+    width: 90px;
+    height: 90px;
+    animation-delay: 7s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-40px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Glass Card */
+.card {
+    position: relative;
+    padding: 80px 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 60px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: pop 1.5s ease;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Glowing Text */
+h1 {
+    font-size: 4.5rem;
+    background: linear-gradient(90deg, #00fff0, #ff00ff, #00fff0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 3s infinite linear;
+    text-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+@keyframes glow {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+
+<div class="card">
+    <h1>Not Found</h1>
+</div>
+
+</body>
+</html>
