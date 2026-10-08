@@ -1,117 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Hello Ayush</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Moon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+        body, html {
+            width: 100vw;
+            height: 100vh;
+            background-color: #1a2559;
+            background-image: radial-gradient(circle at center, #2a3b7c 0%, #090d1f 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden; /* This strictly prevents any scrolling */
+        }
 
-body {
-    height: 100vh;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+        /* 404 Layout */
+        .error-code {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+        }
 
-/* Floating background bubbles */
-.bubble {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 50%;
-    animation: float 12s infinite ease-in-out;
-}
+        .number {
+            font-size: clamp(8rem, 15vw, 16rem);
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1;
+        }
 
-.bubble:nth-child(1) {
-    top: 10%;
-    left: 15%;
-    width: 120px;
-    height: 120px;
-}
+        /* The Moon */
+        .moon-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.bubble:nth-child(2) {
-    bottom: 20%;
-    right: 10%;
-    width: 180px;
-    height: 180px;
-    animation-delay: 4s;
-}
+        .moon-halo {
+            position: absolute;
+            width: 130%;
+            height: 130%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
 
-.bubble:nth-child(3) {
-    top: 50%;
-    right: 30%;
-    width: 90px;
-    height: 90px;
-    animation-delay: 7s;
-}
+        .moon {
+            width: clamp(120px, 12vw, 220px);
+            height: clamp(120px, 12vw, 220px);
+            background: #e2e8f0;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            box-shadow: 
+                inset -15px -15px 30px rgba(0, 0, 0, 0.1),
+                0 0 20px rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+        }
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-40px); }
-    100% { transform: translateY(0px); }
-}
+        .crater {
+            position: absolute;
+            background: #cbd5e1;
+            border-radius: 50%;
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.1);
+        }
 
-/* Glass Card */
-.card {
-    position: relative;
-    padding: 80px 120px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 20px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 60px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.2);
-    animation: pop 1.5s ease;
-}
+        .c1 { width: 25%; height: 25%; top: 15%; left: 30%; }
+        .c2 { width: 35%; height: 35%; bottom: 15%; right: 15%; }
+        .c3 { width: 15%; height: 15%; top: 40%; right: 20%; }
+        .c4 { width: 12%; height: 12%; bottom: 25%; left: 20%; }
+        .c5 { width: 18%; height: 18%; top: 50%; left: 15%; }
 
-@keyframes pop {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
+        /* Text Content */
+        .message {
+            color: #ffffff;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-weight: 500;
+            margin-top: 30px;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+        }
 
-/* Glowing Text */
-h1 {
-    font-size: 4.5rem;
-    background: linear-gradient(90deg, #00fff0, #ff00ff, #00fff0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 3s infinite linear;
-    text-shadow: 0 0 20px rgba(255,255,255,0.3);
-}
+        /* Stars Background & Twinkle Effect */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-@keyframes glow {
-    0% { background-position: 0%; }
-    100% { background-position: 200%; }
-}
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1.2); text-shadow: 0 0 10px rgba(255,255,255,0.8); }
+        }
 
-</style>
+        .star {
+            position: absolute;
+            color: #ffffff;
+            animation: twinkle infinite ease-in-out;
+        }
+
+        .dot {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle infinite ease-in-out;
+            box-shadow: 0 0 5px rgba(255,255,255,0.8);
+        }
+
+        /* Distributed Stars */
+        .s1 { top: 15%; left: 10%; font-size: 24px; animation-duration: 3s; animation-delay: 0s; }
+        .s2 { top: 25%; left: 45%; font-size: 12px; animation-duration: 2s; animation-delay: 0.5s; }
+        .s3 { top: 30%; right: 15%; font-size: 18px; animation-duration: 4s; animation-delay: 1s; }
+        .s4 { top: 12%; right: 25%; font-size: 20px; animation-duration: 2.5s; animation-delay: 0.2s; }
+        .s5 { bottom: 35%; left: 15%; font-size: 16px; animation-duration: 3.5s; animation-delay: 0.7s; }
+        .s6 { bottom: 20%; right: 10%; font-size: 14px; animation-duration: 2s; animation-delay: 1.5s; }
+        .s7 { bottom: 10%; right: 30%; font-size: 24px; animation-duration: 4.5s; animation-delay: 0.3s; }
+        .s8 { top: 50%; left: 5%; font-size: 14px; animation-duration: 2.8s; animation-delay: 1.2s; }
+        .s9 { bottom: 40%; left: 30%; font-size: 10px; animation-duration: 3.2s; animation-delay: 0.8s; }
+        .s10 { top: 60%; right: 5%; font-size: 18px; animation-duration: 3.8s; animation-delay: 0.4s; }
+        .s11 { top: 5%; left: 35%; font-size: 14px; animation-duration: 2.2s; animation-delay: 1.1s; }
+        .s12 { bottom: 15%; left: 50%; font-size: 20px; animation-duration: 3.1s; animation-delay: 0.6s; }
+
+        .d1 { width: 3px; height: 3px; top: 20%; left: 35%; animation-duration: 2s; animation-delay: 0.1s; }
+        .d2 { width: 4px; height: 4px; top: 15%; right: 40%; animation-duration: 3s; animation-delay: 0.9s; }
+        .d3 { width: 2px; height: 2px; bottom: 45%; right: 25%; animation-duration: 2.5s; animation-delay: 0.4s; }
+        .d4 { width: 3px; height: 3px; bottom: 25%; left: 25%; animation-duration: 3.5s; animation-delay: 1.3s; }
+        .d5 { width: 4px; height: 4px; top: 50%; right: 40%; animation-duration: 4s; animation-delay: 0.5s; }
+        .d6 { width: 2px; height: 2px; top: 80%; left: 80%; animation-duration: 2.2s; animation-delay: 0.8s; }
+        .d7 { width: 3px; height: 3px; top: 10%; left: 80%; animation-duration: 3.1s; animation-delay: 1.4s; }
+        .d8 { width: 2px; height: 2px; bottom: 10%; left: 10%; animation-duration: 2.7s; animation-delay: 0.2s; }
+        .d9 { width: 3px; height: 3px; top: 70%; left: 20%; animation-duration: 3.4s; animation-delay: 1.1s; }
+        .d10 { width: 4px; height: 4px; bottom: 60%; right: 10%; animation-duration: 2.9s; animation-delay: 0.7s; }
+    </style>
 </head>
 <body>
 
-<div class="bubble"></div>
-<div class="bubble"></div>
-<div class="bubble"></div>
+    <!-- Starry Background -->
+    <div class="stars">
+        <div class="star s1">✦</div>
+        <div class="star s2">✦</div>
+        <div class="star s3">✦</div>
+        <div class="star s4">✦</div>
+        <div class="star s5">✦</div>
+        <div class="star s6">✦</div>
+        <div class="star s7">✦</div>
+        <div class="star s8">✦</div>
+        <div class="star s9">✦</div>
+        <div class="star s10">✦</div>
+        <div class="star s11">✦</div>
+        <div class="star s12">✦</div>
+        
+        <div class="dot d1"></div>
+        <div class="dot d2"></div>
+        <div class="dot d3"></div>
+        <div class="dot d4"></div>
+        <div class="dot d5"></div>
+        <div class="dot d6"></div>
+        <div class="dot d7"></div>
+        <div class="dot d8"></div>
+        <div class="dot d9"></div>
+        <div class="dot d10"></div>
+    </div>
 
-<div class="card">
-    <h1>Not Found</h1>
-</div>
+    <!-- 404 Graphic -->
+    <div class="error-code">
+        <div class="number">4</div>
+        <div class="moon-container">
+            <div class="moon-halo"></div>
+            <div class="moon">
+                <div class="crater c1"></div>
+                <div class="crater c2"></div>
+                <div class="crater c3"></div>
+                <div class="crater c4"></div>
+                <div class="crater c5"></div>
+            </div>
+        </div>
+        <div class="number">4</div>
+    </div>
+
+    <!-- Text -->
+    <div class="message">Woah there, it seems you've reach the moon.</div>
 
 </body>
 </html>
