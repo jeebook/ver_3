@@ -1,0 +1,172 @@
+    .contn_usr_info_cl {
+      display: flex; justify-content: center;
+    }
+    .contn_usr_info_card_cl {
+        position: relative;
+        background: var(--std_card_bgcol);
+        border-radius: 25px;
+        width: 100%;
+        max-width: 420px;
+        aspect-ratio: 12 / 8;
+        margin: 10px 20px 0 20px;
+        border: 5px solid var(--std_card_border_bgcol);
+    }
+    .usr_info_card_header_cl {
+        padding: 24px 24px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+    .usr_info_profile_info_cl {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    
+    .usr_info_avatar_box_cl {
+        position: relative;
+        padding: 3px; 
+        border: 3px solid var(--avatar_ring_col);
+        border-radius: 50%;
+        width: 64px; 
+        height: 64px; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .usr_info_avatar_svg_cl {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: var(--avatar_bg_col);
+        overflow: hidden;  
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent; 
+        outline: none;
+    }
+    .usr_info_avatar_svg_cl svg {
+        width: 82%;
+        height: 82%;
+        object-fit: contain;
+        margin-bottom: -2px;
+    }
+    
+    .usr_info_status_dot {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 16px; 
+        height: 16px; 
+        background-color: #10B981;
+        border: 3px solid var(--std_card_bgcol);
+        border-radius: 50%;
+        z-index: 3;
+    }
+    
+    .usr_info_info_text h2 {
+        color: var(--text_main_col);
+        font-weight: 700;
+        font-size: 1.25rem;
+        margin: 0;
+    }
+
+    .usr_info_info_text h3 {
+        color: var(--text_sub_col);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+    
+    .usr_info_edit_icon_cl {
+        -webkit-tap-highlight-color: transparent; 
+        outline: none;
+        cursor: pointer;
+        color: var(--edit_icon_col);
+        background-color: var(--edit_icon_bg_col);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+    }
+    
+    .usr_info_edit_icon_cl svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .usr_info_divider_cl {
+        height: 1px;
+        background-color: var(--divider_col);
+        margin: 16px 24px;
+    }
+    
+    .usr_info_balance_sec_cl {
+        padding: 0 24px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .usr_info_balance_text_cl {
+        color: var(--text_sub_col);
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    
+    .usr_info_balance_amt_wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px; 
+    }
+
+    .usr_info_balance_amt_cl {
+        color: var(--text_main_col);
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+    
+
+.success_icon_cl {
+        display: block;
+        width: 10px;
+        height: 10px;
+        flex-shrink: 0; /* CRITICAL: Prevents Flexbox from squishing the dot */
+        background-color: #ADADAD; 
+        border-radius: 50%;
+        position: relative;
+        z-index: 1; 
+    }
+
+    .success_icon_cl::after {
+        content: "";
+        position: absolute;
+        /* Mathematically perfect centering */
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: inherit; 
+        z-index: -1;
+    }
+
+    .success_icon_cl.animate-wave::after {
+        animation: wave-animation 2s infinite ease-out; 
+    }
+
+    @keyframes wave-animation {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.7; 
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(2.2); 
+            opacity: 0; 
+        }
+    }

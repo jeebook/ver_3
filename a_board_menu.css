@@ -1,0 +1,226 @@
+    .board_menu_overlay_cl {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 14;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .board_menu_overlay_cl.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .board_info_page_cl {
+      top: 0;
+      left: 0;
+      background-color: var(--boardmenu_bgcol); 
+      z-index: 15;
+      padding: 20px 20px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+      overflow: hidden; 
+      
+      visibility: hidden; 
+      pointer-events: none;
+    }
+
+    .board_info_page_cl::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background-color: var(--boardmenu_upper_col);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .board_info_page_cl::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -120px;
+      width: 300px;
+      height: 300px;
+      background-color: var(--boardmenu_lower_col);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .board_info_page_cl.open {
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .board_info_page_cl.side_mode {
+      position: fixed; 
+      height: 100vh;
+      width: 85%;
+      max-width: 400px;
+      border-radius: 0 24px 24px 0; 
+      transform: translateX(-100%);
+      opacity: 1;
+      transition: transform 0.3s ease, visibility 0s linear 0.3s; 
+    }
+    
+    .board_info_page_cl.side_mode.open {
+      transform: translateX(0);
+      transition: transform 0.3s ease, visibility 0s linear 0s;
+    }
+
+    .board_info_page_cl.side_mode .submit_btn { display: none; }
+
+    .board_info_page_cl.full_mode {
+      position: fixed; /* Changed from absolute so it overlays the whole viewport */
+      height: 100vh;   /* Use viewport height */
+      width: 100%;
+      border-radius: 0; 
+      left: 50%;       /* Center horizontally */
+      transform: translateX(-50%); /* Center horizontally offset */
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    }
+
+    .board_info_page_cl.full_mode.open {
+      opacity: 1;
+      transform: translateX(-50%); /* Keep it centered when open */
+      transition: opacity 0.3s ease, visibility 0s linear 0s;
+    }
+
+    .board_info_page_cl.full_mode .submit_btn { display: block; }
+
+    .close_btn {
+      background-color: #fdfdff;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #3b0086; 
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent; 
+      outline: none;
+      align-self: flex-end; 
+      margin-bottom: 20px; 
+      transition: background-color 0.2s ease;
+      flex-shrink: 0;
+      
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                  0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    }
+
+    .close_btn:hover { background-color: #dfd0ea; }
+    button { -webkit-tap-highlight-color: transparent; outline: none; }
+
+    .board_tabs_container_cl {
+      display: flex;
+      background-color: var(--board_tabs_container_bgcol);
+      border-radius: 20px;
+      padding: 4px;
+      margin-bottom: 30px;
+      gap: 2px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .board_tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 2px;
+      border: none;
+      background: transparent;
+      font-family: 'Belanosima', sans-serif;
+      font-weight: 600;
+      color: var(--board_tab_col);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px; 
+    }
+    
+    .board_tab.active {
+      background-color: #ffffff;
+      color: #2b1c40;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .class_grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .class_card {
+      border: 2px solid transparent;
+      border-radius: 16px;
+      padding: 15px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                  0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    
+    .class_card:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.06); }
+    .class_card.active { border-color: var(--class_card_active_bdcol); }
+    .class_card img { height: 85px; width: 100%; object-fit: contain; display: block; pointer-events: none; }
+
+    .checkmark {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #3b0086;
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+    
+    .class_card.active .checkmark { display: flex; }
+    .checkmark svg { width: 14px; height: 14px; }
+
+    .submit_btn {
+      width: 100%; padding: 16px; background-color: #3b0086; color: white;
+      border: none; border-radius: 12px; font-size: 18px; font-weight: 600;
+      cursor: pointer; font-family: 'Belanosima', sans-serif; margin-top: auto;
+      position: relative;
+      z-index: 1;
+      transition: background-color 0.3s;
+    }
+    
+    .submit_btn:disabled { background-color: #ccc; cursor: not-allowed; }
+    .no-transition { transition: none !important; }
+
+/* Add .full_mode to your media queries */
+    @media (min-width: 768px) and (max-width: 1023px) { 
+      .board_info_page_cl.full_mode { width: 80%; min-width: 300px; } 
+    }
+    @media (min-width: 1024px) { 
+      .board_info_page_cl.full_mode { min-width: 600px; width: 50%; } 
+    }

@@ -1,0 +1,110 @@
+let njee_chapter_data = {
+
+njee_fbook1112p: {
+  list_title: "Physics Formula Book - 11th & 12th", actual_price: 149, current_price: 119, price_per_chapter: 0,
+  chapters: [
+    { chapter_index: "Chapter 1", chapter_name: "Basic Maths", chapter_item_id: "njee_fbook1112p_c1", preview_allowed: true },
+    { chapter_index: "Chapter 2", chapter_name: "Units and Measurements", chapter_item_id: "njee_fbook1112p_c2" },
+    { chapter_index: "Chapter 3", chapter_name: "Motion in Straight Line", chapter_item_id: "njee_fbook1112p_c3" },
+    { chapter_index: "Chapter 4", chapter_name: "Motion in Plane", chapter_item_id: "njee_fbook1112p_c4" },
+    { chapter_index: "Chapter 5", chapter_name: "Laws of Motion", chapter_item_id: "njee_fbook1112p_c5" },
+    { chapter_index: "Chapter 6", chapter_name: "Circular Motion", chapter_item_id: "njee_fbook1112p_c6" },
+    { chapter_index: "Chapter 7", chapter_name: "Work Power and Energy", chapter_item_id: "njee_fbook1112p_c7" },
+    { chapter_index: "Chapter 8", chapter_name: "Center of Mass", chapter_item_id: "njee_fbook1112p_c8" },
+    { chapter_index: "Chapter 9", chapter_name: "Collisions", chapter_item_id: "njee_fbook1112p_c9" },
+    { chapter_index: "Chapter 10", chapter_name: "Rotational Motion", chapter_item_id: "njee_fbook1112p_ca0" },
+    { chapter_index: "Chapter 11", chapter_name: "Gravitation", chapter_item_id: "njee_fbook1112p_ca1" },
+    { chapter_index: "Chapter 12", chapter_name: "Properties of Solids", chapter_item_id: "njee_fbook1112p_ca2" },
+    { chapter_index: "Chapter 13", chapter_name: "Properties of Fluids", chapter_item_id: "njee_fbook1112p_ca3" },
+    { chapter_index: "Chapter 14", chapter_name: "Thermal Properties of Matter", chapter_item_id: "njee_fbook1112p_ca4" },
+    { chapter_index: "Chapter 15", chapter_name: "Thermodynamics", chapter_item_id: "njee_fbook1112p_ca5" },
+    { chapter_index: "Chapter 16", chapter_name: "KTG", chapter_item_id: "njee_fbook1112p_ca6" },
+    { chapter_index: "Chapter 17", chapter_name: "Oscillations", chapter_item_id: "njee_fbook1112p_ca7" },
+    { chapter_index: "Chapter 18", chapter_name: "Waves", chapter_item_id: "njee_fbook1112p_ca8" },
+    { chapter_index: "Chapter 19", chapter_name: "Electric Charges and Fields", chapter_item_id: "njee_fbook1112p_ca9" },
+    { chapter_index: "Chapter 20", chapter_name: "Electric Potential and Capacitance", chapter_item_id: "njee_fbook1112p_cb0" },
+    { chapter_index: "Chapter 21", chapter_name: "Current Electricity", chapter_item_id: "njee_fbook1112p_cb1" },
+    { chapter_index: "Chapter 22", chapter_name: "Moving Charges and Magnetism", chapter_item_id: "njee_fbook1112p_cb2" },
+    { chapter_index: "Chapter 23", chapter_name: "Magnetism and Matter", chapter_item_id: "njee_fbook1112p_cb3" },
+    { chapter_index: "Chapter 24", chapter_name: "EMI", chapter_item_id: "njee_fbook1112p_cb4" },
+    { chapter_index: "Chapter 25", chapter_name: "AC", chapter_item_id: "njee_fbook1112p_cb5" },
+    { chapter_index: "Chapter 26", chapter_name: "EM Waves", chapter_item_id: "njee_fbook1112p_cb6" },
+    { chapter_index: "Chapter 27", chapter_name: "Ray Optics", chapter_item_id: "njee_fbook1112p_cb7" },
+    { chapter_index: "Chapter 28", chapter_name: "Wave Optics", chapter_item_id: "njee_fbook1112p_cb8" },
+    { chapter_index: "Chapter 29", chapter_name: "Dual Nature", chapter_item_id: "njee_fbook1112p_cb9" },
+    { chapter_index: "Chapter 30", chapter_name: "Atoms", chapter_item_id: "njee_fbook1112p_cc0" },
+    { chapter_index: "Chapter 31", chapter_name: "Nuclei", chapter_item_id: "njee_fbook1112p_cc1" },
+    { chapter_index: "Chapter 32", chapter_name: "Semiconductors", chapter_item_id: "njee_fbook1112p_cc2" }
+  ]
+},
+njee_fbook1112c: {
+  list_title: "Chemistry Formula Book - 11th & 12th", actual_price: 149, current_price: 119, price_per_chapter: 0,
+  chapters: [
+    { chapter_index: "Chapter 1", chapter_name: "Some Basic Concepts of Chemistry", chapter_item_id: "njee_fbook1112c_c1", preview_allowed: true },
+    { chapter_index: "Chapter 2", chapter_name: "Atomic Structure", chapter_item_id: "njee_fbook1112c_c2" },
+    { chapter_index: "Chapter 3", chapter_name: "Periodic Classification of Elements", chapter_item_id: "njee_fbook1112c_c3" },
+    { chapter_index: "Chapter 4", chapter_name: "Chemical Bonding and Molecular Structure", chapter_item_id: "njee_fbook1112c_c4" },
+    { chapter_index: "Chapter 5", chapter_name: "Thermodynamics", chapter_item_id: "njee_fbook1112c_c5" },
+    { chapter_index: "Chapter 6", chapter_name: "Chemical Equilibrium", chapter_item_id: "njee_fbook1112c_c6" },
+    { chapter_index: "Chapter 7", chapter_name: "Ionic Equilibrium", chapter_item_id: "njee_fbook1112c_c7" },
+    { chapter_index: "Chapter 8", chapter_name: "Redox Reactions", chapter_item_id: "njee_fbook1112c_c8" },
+    { chapter_index: "Chapter 9", chapter_name: "IUPAC Nomenclature", chapter_item_id: "njee_fbook1112c_c9" },
+    { chapter_index: "Chapter 10", chapter_name: "Isomerism", chapter_item_id: "njee_fbook1112c_ca0" },
+    { chapter_index: "Chapter 11", chapter_name: "GOC", chapter_item_id: "njee_fbook1112c_ca1" },
+    { chapter_index: "Chapter 12", chapter_name: "Hydrocarbons", chapter_item_id: "njee_fbook1112c_ca2" },
+    { chapter_index: "Chapter 13", chapter_name: "Solutions", chapter_item_id: "njee_fbook1112c_ca3" },
+    { chapter_index: "Chapter 14", chapter_name: "Electrochemistry", chapter_item_id: "njee_fbook1112c_ca4" },
+    { chapter_index: "Chapter 15", chapter_name: "Chemical Kinetics", chapter_item_id: "njee_fbook1112c_ca5" },
+    { chapter_index: "Chapter 16", chapter_name: "D & F Block Elements", chapter_item_id: "njee_fbook1112c_ca6" },
+    { chapter_index: "Chapter 17", chapter_name: "Coordination Compounds", chapter_item_id: "njee_fbook1112c_ca7" },
+    { chapter_index: "Chapter 18", chapter_name: "Haloalkanes and Haloarenes", chapter_item_id: "njee_fbook1112c_ca8" },
+    { chapter_index: "Chapter 19", chapter_name: "Alcohols, Phenols and Ethers", chapter_item_id: "njee_fbook1112c_ca9" },
+    { chapter_index: "Chapter 20", chapter_name: "Aldehydes Ketones and Carboxylic Acids", chapter_item_id: "njee_fbook1112c_cb0" },
+    { chapter_index: "Chapter 21", chapter_name: "Amines", chapter_item_id: "njee_fbook1112c_cb1" },
+    { chapter_index: "Chapter 22", chapter_name: "Biomolecules", chapter_item_id: "njee_fbook1112c_cb2" }
+  ]
+},
+// HAND BOOKS FOR NEEET JEE
+njee_hbook11p: {
+  list_title: "Physics Handbook - 11", actual_price: 99, current_price: 75, price_per_chapter: 0,
+  chapters: [
+    { chapter_index: "Chapter 1", chapter_name: "Scalars and Vectors", chapter_item_id: "njee_hbook11p_c1", preview_allowed: true },
+    { chapter_index: "Chapter 2", chapter_name: "Units and Measurements", chapter_item_id: "njee_hbook11p_c2" },
+    { chapter_index: "Chapter 3", chapter_name: "Motion in a Straight Line", chapter_item_id: "njee_hbook11p_c3" },
+    { chapter_index: "Chapter 4", chapter_name: "Motion in a Plane", chapter_item_id: "njee_hbook11p_c4" },
+    { chapter_index: "Chapter 5", chapter_name: "Laws of Motion", chapter_item_id: "njee_hbook11p_c5" },
+    { chapter_index: "Chapter 6", chapter_name: "Work Energy and Power", chapter_item_id: "njee_hbook11p_c6" },
+    { chapter_index: "Chapter 7", chapter_name: "Center of Mass", chapter_item_id: "njee_hbook11p_c7" },
+    { chapter_index: "Chapter 8", chapter_name: "Rotational Motion", chapter_item_id: "njee_hbook11p_c8" },
+    { chapter_index: "Chapter 9", chapter_name: "Gravitation", chapter_item_id: "njee_hbook11p_c9" },
+    { chapter_index: "Chapter 10", chapter_name: "Mechanical Properties of Solids", chapter_item_id: "njee_hbook11p_ca0" },
+    { chapter_index: "Chapter 11", chapter_name: "Mechanical Properties of Fluids", chapter_item_id: "njee_hbook11p_ca1" },
+    { chapter_index: "Chapter 12", chapter_name: "Thermal Properties of Matter", chapter_item_id: "njee_hbook11p_ca2" },
+    { chapter_index: "Chapter 13", chapter_name: "Transmission of Heat", chapter_item_id: "njee_hbook11p_ca3" },
+    { chapter_index: "Chapter 14", chapter_name: "Thermodynamics", chapter_item_id: "njee_hbook11p_ca4" },
+    { chapter_index: "Chapter 15", chapter_name: "Kinetic Theory of Gases", chapter_item_id: "njee_hbook11p_ca5" },
+    { chapter_index: "Chapter 16", chapter_name: "Oscillations", chapter_item_id: "njee_hbook11p_ca6" },
+    { chapter_index: "Chapter 17", chapter_name: "Waves", chapter_item_id: "njee_hbook11p_ca7" }
+  ]
+},
+njee_hbook12p: {
+  list_title: "Physics Handbook - 12", actual_price: 99, current_price: 75, price_per_chapter: 0,
+  chapters: [
+    { chapter_index: "Chapter 1", chapter_name: "Electric Charges and Fields", chapter_item_id: "njee_hbook12p_c1", preview_allowed: true },
+    { chapter_index: "Chapter 2", chapter_name: "Electric Potential and Capacitance", chapter_item_id: "njee_hbook12p_c2" },
+    { chapter_index: "Chapter 3", chapter_name: "Current Electricity", chapter_item_id: "njee_hbook12p_c3" },
+    { chapter_index: "Chapter 4", chapter_name: "Moving Charges and Magnetism", chapter_item_id: "njee_hbook12p_c4" },
+    { chapter_index: "Chapter 5", chapter_name: "Magnetism and Matter", chapter_item_id: "njee_hbook12p_c5" },
+    { chapter_index: "Chapter 6", chapter_name: "Electromagnetic Induction", chapter_item_id: "njee_hbook12p_c6" },
+    { chapter_index: "Chapter 7", chapter_name: "Alternating Current", chapter_item_id: "njee_hbook12p_c7" },
+    { chapter_index: "Chapter 8", chapter_name: "Electromagnetic Waves", chapter_item_id: "njee_hbook12p_c8" },
+    { chapter_index: "Chapter 9", chapter_name: "Ray Optics", chapter_item_id: "njee_hbook12p_c9" },
+    { chapter_index: "Chapter 10", chapter_name: "Wave Optics", chapter_item_id: "njee_hbook12p_ca0" },
+    { chapter_index: "Chapter 11", chapter_name: "Dual Nature of Matter and Radiation", chapter_item_id: "njee_hbook12p_ca1" },
+    { chapter_index: "Chapter 12", chapter_name: "X Rays", chapter_item_id: "njee_hbook12p_ca2" },
+    { chapter_index: "Chapter 13", chapter_name: "Atoms", chapter_item_id: "njee_hbook12p_ca3" },
+    { chapter_index: "Chapter 14", chapter_name: "Nuclei", chapter_item_id: "njee_hbook12p_ca4" },
+    { chapter_index: "Chapter 15", chapter_name: "Semiconductor Electronics", chapter_item_id: "njee_hbook12p_ca5" }
+  ]
+}
+}

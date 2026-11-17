@@ -1,0 +1,50 @@
+    /* CUSTOM POPUP TOAST */
+    .custom_popup_toast {
+      position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background-color: #333; color: white; padding: 12px 24px; border-radius: 8px; font-family: 'Poppins', sans-serif;
+      font-size: 14px; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      white-space: nowrap; pointer-events: none;
+    }
+    .custom_popup_toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    
+    /* CUSTOM POPUPPER TEXT */
+    .custom_popuppper_cl {
+      position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background-color: #333;
+      color: white; 
+      padding: 12px 24px; border-radius: 8px; font-family: 'Poppins', sans-serif;
+      font-size: 14px; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      white-space: nowrap; pointer-events: none;
+    }
+    .custom_popuppper_cl.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+    /* --- INSUFFICIENT BALANCE POPUP --- */
+    .insufficient_balance_overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: transparent; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 3000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
+    }
+    .insufficient_balance_overlay.show { opacity: 1; visibility: visible; }
+    
+    .insufficient_balance_box {
+      background: #351757; border: 4px solid #4E2778; 
+      padding: 35px 35px 25px; border-radius: 12px; text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25); transform: scale(0.9); transition: transform 0.3s ease;
+      position: relative; min-width: 200px;
+    }
+    .insufficient_balance_overlay.show .insufficient_balance_box { transform: scale(1); }
+    
+    .insufficient_balance_text { 
+      font-size: 18px; color: #ffffff; font-weight: 600; margin-bottom: 10px; font-family: 'Inter', sans-serif;
+    }
+    .insufficient_balance_subtext {
+      font-size: 14px; color: #d1c4e9; font-weight: 400; font-family: 'Inter', sans-serif;
+    }
+    
+    /* Close icon positioned top right */
+    .insufficient_balance_close_icon {
+      position: absolute; top: 8px; right: 8px; cursor: pointer;
+      fill: #ffffff; transition: opacity 0.2s; opacity: 0.6;
+    }
+    .insufficient_balance_close_icon:hover { opacity: 1; }

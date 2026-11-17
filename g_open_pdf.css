@@ -1,0 +1,186 @@
+    /* Sliding Container */
+    .show_notes_img_container_cl {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 100vh);
+      width: 100%;
+      height: 100vh;
+      z-index: 9;
+      background-color: var(--openasPdf_bgcol);;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      transition: transform 0.4s ease-in-out; 
+    }
+    
+    .show_notes_img_container_cl.active {
+      transform: translate(-50%, 0);
+    }
+    
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .show_notes_img_container_cl { width: 80%; }
+    }
+    
+    @media (min-width: 1024px) {
+      .show_notes_img_container_cl { width: 50%; }
+    }
+    
+    /* Sticky Action Header */
+    .show_notes_action_area_cl {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 10px;
+      background-color: #351757;
+      display: flex;
+      justify-content: space-between; 
+      align-items: center;
+    }
+    
+    .show_notes_logo_container_cl {
+      width: fit-content;
+      color: white;
+      background-color: #4E2778;
+      border-radius: 25px;
+      height: 35px;
+      padding: 0 20px;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: "Inter", sans-serif;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .controls_wrapper_cl {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .show_notes_img_inrow_boxsize_bar_cl input[type="range"] {
+      cursor: pointer;
+      width: 100px; 
+      accent-color: #EE82EE;
+    }
+
+    .close_btn_cl {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 5px;
+      transition: color 0.2s;
+    }
+
+    .close_btn_cl:hover {
+      color: #EE82EE;
+    }
+    
+    /* Column layout for images */
+    .show_notes_img_inrow_box_cl {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px; 
+      padding: 10px 0; 
+      width: 100%;
+      margin: 0 auto;
+      transition: width 0.1s ease; 
+    }
+
+    /* Loading text style */
+    .loading_text {
+      color: var(--loading_text);;
+      margin-top: 50px;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .error_text {
+      color: #ff3333;
+      margin-top: 50px;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* Skeleton Animation */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+/* Container scales naturally with the image inside */
+.img_wrapper_cl {
+  position: relative;
+  width: 100%;
+  height: auto; /* Replaced aspect-ratio */
+  display: block;
+  background: linear-gradient(90deg, #d3d3d3 25%, #e8e8e8 50%, #d3d3d3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  min-height: 400px; /* Gives the skeleton loader some height before image loads */
+}
+
+/* The actual image dictating the height */
+.real_image_element {
+  width: 100%; 
+  height: auto; /* Natural height */
+  display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  pointer-events: none; /* Prevents interaction */
+  -webkit-user-drag: none;
+}
+
+.real_image_element.loaded {
+  opacity: 1;
+}
+
+/* The invisible overlay that blocks right-clicks/saving */
+.trap_overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  background-color: transparent;
+  pointer-events: auto; /* Absorbs all clicks */
+}
+
+    .img_wrapper_cl img {
+      width: 100%; 
+      min-height: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out, transform 0.2s ease;
+      pointer-events: none; 
+      -webkit-user-drag: none;
+    }
+    
+    .img_wrapper_cl img.loaded {
+      opacity: 1;
+    }
+
+    .img_index_cl {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background-color: rgba(255, 255, 0, 0.5); 
+      color: #000000;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      pointer-events: none; 
+      z-index: 2;
+    }
