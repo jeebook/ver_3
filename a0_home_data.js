@@ -103,7 +103,7 @@ let subject_data = {
     {
         section_heading: "Ezee Notes - Grade 12",
         items: [
-            { url: "/med/thumb/cbse/12/cbse_n12p.webp", subject_item_id: "cbse_n12p", click_function: "open_subj_fc('cbse_n12p')" },
+            { url: "https://jeebook.github.io/ver_3/med/thumb/cbse/12/cbse_n12p.webp", subject_item_id: "cbse_n12p", click_function: "open_subj_fc('cbse_n12p')" },
             { url: "/med/thumb/cbse/12/cbse_n12c.webp", subject_item_id: "cbse_n12c", click_function: "open_subj_fc('cbse_n12c')" },
             { url: "/med/thumb/cbse/12/cbse_n12m.webp", subject_item_id: "cbse_n12m", click_function: "open_subj_fc('cbse_n12m')" },
             { url: "/med/thumb/cbse/12/cbse_n12b.webp", subject_item_id: "cbse_n12b", click_function: "open_subj_fc('cbse_n12b')" }
