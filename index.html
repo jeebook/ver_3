@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WebPage</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Crypto JS for decryption -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+  <script src="a0_cbse9_chapter_data.js"></script>
+  <script src="a0_cbse10_chapter_data.js"></script>
+  <script src="a0_cbse11_chapter_data.js"></script>
+  <script src="a0_cbse12_chapter_data.js"></script>
+  
+  <script src="a0_icse10_chapter_data.js"></script>
+  <script src="a0_njee_chapter_data.js"></script>
+  
+  <script src="a0_home_data.js"></script>
+  
+  <link rel="stylesheet" href="a_board_menu.css">
+  <script src="a_board_menu.js"></script>
+  
+  <link rel="stylesheet" href="aa_load_skeleton.css">
+  <script src="aa_load_skeleton.js"></script>
+  
+  <link rel="stylesheet" href="a_header_main.css">
+  <script src="a_header_main.js"></script>
+  
+  <link rel="stylesheet" href="b_bottom_nav.css">
+  <script src="b_bottom_nav.js"></script>
+  
+  <script src="c_home_unlocked.js" defer></script>
+  
+  <link rel="stylesheet" href="d_user_info.css">
+  <script src="d_user_info.js" defer></script>
+  <link rel="stylesheet" href="e_chapterbox_tab.css">
+  <script src="e_chapterbox_tab.js" defer></script>
+  
+  <script src="f_costume_popup.js" defer></script>
+  <link rel="stylesheet" href="f_costume_popup.css">
+  
+  <link rel="stylesheet" href="g_open_pdf.css">
+  <script src="g_open_pdf.js" defer></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --body_bgcol: #ffffff;
+      --body_col: #ffffff;
+      --second_main_col: #4E2778;
+      --trans_second_main_col: rgba(78, 39, 120, 0.6);
+      /* BOARD MENU */
+      --boardmenu_bgcol: #fafafc;
+      --boardmenu_upper_col: #efe6f9;
+      --boardmenu_lower_col: #e8f4f2;
+      --board_tabs_container_bgcol: rgba(20, 20, 20, 0.1);
+      --board_tab_col: #7b6d8d;
+      --class_card_active_bdcol: #3b0086;
+      
+      --main_container_bgcol: #f0f0f0;
+      --main_container_home_h1: #000000;
+      --thum_skeleton_loader_col: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+      
+      /* Light Mode Colors */
+      --std_card_bgcol: #ffffff;
+      --std_card_border_bgcol: #2D1B4E;
+      --avatar_ring_col: #4A3AFF;
+      --avatar_bg_col: #FEF3C7;
+      --text_main_col: #2D1B4E;
+      --text_sub_col: #6B7280;
+      --edit_icon_col: #2D1B4E;
+      --edit_icon_bg_col: #F3F4F6;
+      --divider_col: #E5E7EB;
+      
+      --openasPdf_bgcol: #eeeeee;
+      --loading_text: #333;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --body_bgcol: linear-gradient(135deg, #18181c, #26262a);
+        
+        --main_container_bgcol: #2A2A32;
+        --main_container_home_h1: #f0f0f0;
+        --thum_skeleton_loader_col: linear-gradient(90deg, #35353F 25%, #42424E 50%, #35353F 75%);
+      /* BOARD MENU */
+      --boardmenu_bgcol: #1a1a24;
+      --boardmenu_upper_col: #36244f;
+      --boardmenu_lower_col: #213f3b;
+      --board_tabs_container_bgcol: rgba(255, 255, 255, 0.1);
+      --board_tab_col: #E7E7E7;
+      --class_card_active_bdcol: #4A3AFF;
+      
+        /* Premium Dark Mode Colors */
+        --std_card_bgcol: #32323C;
+        --std_card_border_bgcol: #8B5CF6;
+        --avatar_ring_col: #8B5CF6;
+        --avatar_bg_col: #3F3F4D;
+        --text_main_col: #f0f0f0;
+        --text_sub_col: #9CA3AF;
+        --edit_icon_col: #f0f0f0;
+        --edit_icon_bg_col: #3F3F4D;
+        --divider_col: #4B4B5C; 
+        
+        --openasPdf_bgcol: #2A2A32;
+        --loading_text: #f0f0f0;
+      }
+    }
+    body {
+      display: flex; justify-content: center;
+      background: var(--body_bgcol);
+      color: var(--body_col);
+      font-family: 'Poppins', sans-serif; font-weight: 400;
+      min-height: 100vh;
+      min-width: 350px; overflow-x: hidden; 
+      
+      /* Security: Disable text selection */
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-touch-callout: none; 
+    }
+
+    .main_container_cl {
+      z-index: 1; min-width: 250px; min-height: 500px; width: 100%;
+      background-color: var(--main_container_bgcol);
+      display: flex; flex-direction: column; position: relative;
+    }
+    @media (min-width: 768px) and (max-width: 1023px) { .main_container_cl { width: 80%; min-width: 300px; } }
+    @media (min-width: 1024px) { .main_container_cl { min-width: 600px; width: 50%; } }
+
+.fade-in { animation: simpleFade 0.4s ease-in forwards; }
+.fa-jello {
+  animation: fa-jello 2s ease-in-out infinite; 
+}
+@keyframes fa-jello {
+  0% {transform: scale(1, 1);}
+  12% {  transform: scale(1.15, 0.85);}
+  24% {  transform: scale(0.85, 1.15);}
+  36% {  transform: scale(1.05, 0.95);}
+  48% {  transform: scale(0.95, 1.05);}
+  60% {  transform: scale(1.02, 0.98);}
+  72% {  transform: scale(0.98, 1.02);}
+  100% {  transform: scale(1, 1);}
+}
+
+.content_area_container_cl {
+  flex: 1; position: relative; padding: 20px; padding-bottom: 100px;
+}
+
+/* HOME CONTENT */
+.content_area_cl { flex: 1; padding: 20px; padding-bottom: 100px; background-color: #f5f5f5; position: relative; }
+    .show_in_content_area_cl { width: 100%; }
+.show_in_content_area_cl h1 {
+  font-size: 22px;
+  color: var(--main_container_home_h1);
+  margin: 0px 0 15px 0; padding-left: 10px; border-left:
+  5px solid #cc0000; font-family: 'Poppins', sans-serif; cursor: default; }
+
+    .thumb_subject_container { display: flex; overflow-x: auto; white-space: nowrap; padding: 0; margin-left: 0; gap: 10px; min-height: 145px; padding-bottom:16px; user-select: none;
+    margin-bottom: 15px;}
+    .thumb_cover_card { flex: 0 0 auto; width: 110px; border-radius: 6px; box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); overflow: hidden; cursor: pointer; position: relative;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+  
+  .skeleton_loader {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--thum_skeleton_loader_col);
+    background-size: 200% 100%; animation: skeleton_shimmer 1.5s infinite linear; z-index: 2; }
+    .thumb_cover_card img { width: 100%; height: auto; display: block; opacity: 0; min-height: 154px; }
+    .thumb_cover_card img.loaded { opacity: 1; transition: opacity 0.3s ease; }
+
+    @keyframes skeleton_shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    @keyframes simpleFade { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+
+<body>
+  <!-- Initial Load Skeleton -->
+  <div class="load_skeleton_cl" id="load_skeleton_cl">
+    <div class="load_skeleton_text_cl">
+      Loading<span class="load_skeleton_dot_cl">.</span><span class="load_skeleton_dot_cl">.</span><span class="load_skeleton_dot_cl">.</span>
+    </div>
+  </div>
+  
+  <!-- BULLETIN PAGE -->
+  <div class="bulletin_page_cl" id="bulletin_page_id">
+    <div class="bulletin_text_cl" id="bulletin_text_id"></div>
+  </div>
+
+  <!-- Data Action Skeleton -->
+  <div class="data_action_skeleton_cl" id="data_action_skeleton_id">
+    <div class="data_action_skeleton_box_cl">
+      <span id="data_action_text_id"></span><span class="load_skeleton_dot_cl">.</span><span class="load_skeleton_dot_cl">.</span><span class="load_skeleton_dot_cl">.</span>
+    </div>
+  </div>
+  
+  <!-- BOARD MENU -->
+    <div class="board_menu_overlay_cl" id="board_menu_overlay_id" onclick="close_board_Menu()"></div>
+    <div class="board_info_page_cl side_mode" id="board_info_page_id"></div>
+  
+  
+  <div class="main_container_cl">
+    <div class="header_main_cl">
+      <div class="header_main_menu_open_container_cl" onclick="open_board_SideMenu()">
+        
+        <div class="header_main_menu_open_icon_cl">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4"/>
+          </svg>
+        </div>
+        <div class="header_main_menu_siteName_cl"> <span style="color:#EE82EE;">Ezee</span>&nbsp;Notes </div>
+      </div>
+      
+      <div class="header_main_button_top_right_cl">
+        <div id="header_main_right_button_txt_id">2026-27</div>
+      </div>
+      
+      <div class="header_main_typing_text_cl"><span id="header_main_typing_text_span_id"></span></div>
+    </div>
+    
+    <!-- UNLOCK BUTTON (Centered) -->
+      <div class="bottom_nav_unlock_btn_cl" id="bottom_nav_unlock_btn_id"></div>
+    <!-- CONTAINER AREA -->
+    <div class="content_area_container_cl" id="content_area_container_id"></div>
+    <!-- BOTTOM FLOTTING NAV  -->
+    <div class="bottom_nav_wrapper_cl" id="bottom_nav_wrapper_id"></div>
+    <!-- OPEN AS PDF -->
+    <div class="show_notes_img_container_cl" id="show_notes_img_container_id"></div>
+    
+    
+  </div>
+  
+
+  
+  <script>
+  let web_para = {
+    active_bottom_nav: "bottom_nav_home_button_id",
+    ative_realtime: false,
+    active_bottom_back_button: [],
+    is_back_button: false
+    //selected_board: "cbse",
+    //selected_grade: "11"
+  };
+  let user_data = {
+      "name_is": "Career",
+      "balance": 57,
+      "earned_balance": 23,
+      
+      "unlocked_list": {},
+      eze_para: {
+        selected_board: "cbse",
+        selected_grade: "11",
+      }
+    }
+    function hexToString(hex) {
+    let str = '';
+    for (let i = 0; i < hex.length; i += 2) {
+        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    }
+    return str;
+}
+const whereis = new URLSearchParams(window.location.search);
+const incriptedata = whereis.get("inc") || '7b7d';
+const jsonString = hexToString(incriptedata);
+const user_info = JSON.parse(jsonString);
+    
+// --- SUPABASE LOGIC (connect.js content) ---
+let target_auth_string = `${user_info["user_id"]}-${user_info["temp_password"]}`;
+const access_url = 'https://ozxvulrbqxkvivvvupsn.supabase.co';
+let sb_key = 'sb_publishable_DmXGtvSl-Fd7YetxVTS7hg_F6fJKu8v';
+
+function render_home_content(){
+  //let consunlocked_content_list = Object.values(user_data.unlocked_list).flat();
+  let consunlocked_content_list = Object.values(user_data?.unlocked_list || {}).flat();
+  
+  // Make sure this matches your JSON variable name (subject_data)
+  let show_data_from_json = subject_data?.[web_para.selected_board]?.["grade_" + web_para.selected_grade];
+  
+  const content_area = document.getElementById("content_area_container_id");
+  content_area.innerHTML = ""; 
+  
+  const show_container = document.createElement("div");
+  show_container.id = "show_in_content_area_id";
+  show_container.className = "show_in_content_area_cl fade-in";
+  
+  if (!show_data_from_json ){
+    show_container.innerHTML = `
+<div class="fade-in" style="display: flex; justify-content: center; align-items: center; min-height: 250px; height: 100%; color: red; font-weight: bold; font-size: 1.2rem;">
+  Data Not Found
+</div>`;
+    content_area.appendChild(show_container); 
+    return;
+  }
+  
+  show_data_from_json.forEach(section => {
+    const heading_el = document.createElement("h1");
+    heading_el.textContent = section.section_heading;
+    show_container.appendChild(heading_el);
+
+    const thumb_container = document.createElement("div");
+    thumb_container.className = "thumb_subject_container";
+
+    let sorted_items = [...section.items].sort((a, b) => {
+      let a_prioritized = consunlocked_content_list.includes(a.subject_item_id);
+      let b_prioritized = consunlocked_content_list.includes(b.subject_item_id);
+      if (a_prioritized && !b_prioritized) return -1;
+      if (!a_prioritized && b_prioritized) return 1; 
+      return 0; 
+    });
+
+    sorted_items.forEach(item => {
+      const card_div = document.createElement("div");
+      card_div.className = "thumb_cover_card";
+      
+      // --- DYNAMIC ONCLICK LOGIC ---
+      if (item.click_function) {
+        // Uses the exact string from JSON (e.g., "open_subj_fc('cbse_n11p')")
+        card_div.setAttribute("onclick", item.click_function);
+      } else {
+        // Fallback if you ever forget to add click_function in your JSON
+        card_div.onclick = function() { open_subj_fc(item.subject_item_id); };
+      }
+      // -----------------------------
+      
+      const skeleton = document.createElement("div");
+      skeleton.className = "skeleton_loader";
+
+      const img = document.createElement("img");
+      img.src = item.url;
+      img.alt = "Cover";
+      img.onload = function() { skeleton.style.display = "none"; img.classList.add("loaded"); };
+      
+      card_div.appendChild(skeleton);
+      card_div.appendChild(img);
+      thumb_container.appendChild(card_div);
+    });
+
+    show_container.appendChild(thumb_container);
+  });
+
+  content_area.appendChild(show_container);
+}
+
+
+    
+
+    // ==========================================
+    // 1. GENERATE DOM ELEMENTS FIRST
+    // ==========================================
+    function open_as_pdf_child() {
+      const container = document.getElementById('show_notes_img_container_id');
+      if (!container) return;
+
+      container.innerHTML = `
+        <div class="show_notes_action_area_cl">
+          <div class="show_notes_logo_container_cl">
+            <span style="color: #EE82EE;">Ezee</span>&nbsp;Notes
+          </div>
+          
+          <div class="controls_wrapper_cl">
+            <div class="show_notes_img_inrow_boxsize_bar_cl">
+              <input type="range" id="imageSizeSlider" min="75" max="100" value="100" title="Adjust Image Width">
+            </div>
+            <button class="close_btn_cl" onclick="restore_bottom_nav()" title="Close Notes">&times;</button>
+          </div>
+        </div>
+        
+        <div class="show_notes_img_inrow_box_cl" id="show_notes_img_inrow_box_id"></div>
+      `;
+    }
+    // ==========================================
+    // 5. EVENT LISTENERS & SECURITY
+        let current_UI_Board = null; 
+    let current_UI_ClassData = null; 
+    let has_user_made_changes = false; // Tracks if the submit button should be enabled
+
+    const board_info_page_El = document.getElementById('board_info_page_id');
+    const board_menu_overlay_El = document.getElementById('board_menu_overlay_id');
+
+    // Preload Images on Initialization
+    function preloadAllImages() {
+      board_menu_data.boards_menu.forEach(board => {
+        board.classes.forEach(cls => {
+          const img = new Image();
+          img.src = cls.img;
+        });
+      });
+    }
+
+    function create_board_MenuStructure() {
+      let tabsHTML = `<div class="board_tabs_container_cl" id="board_tabs_container_id">`;
+      board_menu_data.boards_menu.forEach(board => {
+        tabsHTML += `<button id="board_${board.board}_id" class="board_tab" onclick="selectBoard_options('${board.board}')">${board.label}</button>`;
+      });
+      tabsHTML += `</div>`;
+
+      board_info_page_El.innerHTML = `
+        <button class="close_btn" onclick="close_board_Menu()">
+          <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            ${board_menu_data.board_menu_closeButtonSvg}
+          </svg>
+        </button>
+        ${tabsHTML}
+        <div class="class_grid" id="class_grid_container"></div>
+        <button class="submit_btn" id="submit_btn" onclick="submitForm()" disabled>${board_menu_data.board_menu_submitBtnText}</button>
+      `;
+    }
+    
+    // Core render logic for checking active cards
+    function render_class_cards(board_name) {
+      const container = document.getElementById("class_grid_container");
+      container.innerHTML = ""; 
+
+      const activeBoardObj = board_menu_data.boards_menu.find(b => b.board === board_name);
+      const classes = activeBoardObj ? activeBoardObj.classes : [];
+      
+      let active_class_id = null;
+
+      // 1. Check for Side Menu Data matching
+      if (web_para.board_menu_open === "as_side_menu") {
+         if (board_name === web_para.selected_board) {
+             const matchedClass = classes.find(c => c.value.grade == web_para.selected_grade);
+             if (matchedClass) active_class_id = matchedClass.id;
+         }
+      } 
+      // 2. Check for Full Screen Data matching
+      else if (web_para.board_menu_open === "as_full_menu") {
+         if (current_UI_ClassData && current_UI_ClassData.board === board_name) {
+             const matchedClass = classes.find(c => c.value.grade == current_UI_ClassData.grade);
+             if (matchedClass) active_class_id = matchedClass.id;
+         }
+      }
+
+      // Generate HTML
+      classes.forEach(cls => {
+        const isActive = (cls.id === active_class_id) ? "active" : "";
+        const cardHTML = `
+          <div class="class_card ${isActive}" id="card_${cls.id}" onclick="board_menu_selectClass('${cls.id}')" style="background-color: ${cls.color};">
+            <div class="checkmark">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 11.917 9.724 16.5 19 7.5"/>
+              </svg>
+            </div>
+            <img src="${cls.img}" alt="Class Card">
+          </div>
+        `;
+        container.innerHTML += cardHTML;
+      });
+    }
+
+    // --- Side Menu Mode Logic ---
+    function open_board_SideMenu() {
+      web_para.board_menu_open = "as_side_menu";
+      
+      current_UI_Board = web_para.selected_board || "cbse";
+      
+      document.querySelectorAll('.board_tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`board_${current_UI_Board}_id`)?.classList.add('active');
+
+      render_class_cards(current_UI_Board);
+
+      board_info_page_El.className = 'board_info_page_cl side_mode no-transition';
+      void board_info_page_El.offsetWidth; 
+      board_info_page_El.classList.remove('no-transition');
+      board_info_page_El.classList.add('open');
+      board_menu_overlay_El.classList.add('active');
+    }
+
+    // --- Full Screen Mode Logic ---
+    function open_board_FullScreen() {
+  web_para.board_menu_open = "as_full_menu";
+  has_user_made_changes = false; // Disable submit button on fresh open
+  
+  document.querySelectorAll('.board_tab').forEach(t => t.classList.remove('active'));
+  
+  // Fix: Check for selected_board and selected_grade instead of board and grade
+  if (user_data.eze_para && user_data.eze_para.selected_board && user_data.eze_para.selected_grade) {
+    current_UI_Board = user_data.eze_para.selected_board;
+    current_UI_ClassData = {
+      board: user_data.eze_para.selected_board,
+      grade: user_data.eze_para.selected_grade
+    };
+    
+    document.getElementById(`board_${current_UI_Board}_id`)?.classList.add('active');
+    render_class_cards(current_UI_Board);
+  }
+  // If no data exists, don't active any board, but show CBSE classes
+  else {
+    current_UI_Board = null;
+    current_UI_ClassData = null;
+    render_class_cards("cbse");
+  }
+  
+  checkSubmitStatus();
+  
+  board_info_page_El.className = 'board_info_page_cl full_mode no-transition';
+  void board_info_page_El.offsetWidth;
+  board_info_page_El.classList.remove('no-transition');
+  board_info_page_El.classList.add('open');
+}
+
+    function close_board_Menu() {
+      if (!user_data?.eze_para?.selected_board || !user_data?.eze_para?.selected_grade) {
+        return;
+      } 
+      web_para.board_menu_open = null;
+      board_info_page_El.classList.remove('open');
+      board_menu_overlay_El.classList.remove('active');
+    }
+
+    // Handles clicking the Tabs (CBSE, ICSE, etc.)
+    function selectBoard_options(board_opt) {
+      current_UI_Board = board_opt;
+
+      document.querySelectorAll('.board_tab').forEach(tab => tab.classList.remove('active'));
+      const activeTab = document.getElementById(`board_${board_opt}_id`);
+      if (activeTab) activeTab.classList.add('active');
+      
+      // Does not clear current_UI_ClassData, allowing checks to persist if user switches back
+      render_class_cards(board_opt); 
+    }
+
+    // Handles clicking the actual Class Cards
+    function board_menu_selectClass(card_id) {
+      let renderedBoard = current_UI_Board || "cbse"; // Fallback to cbse if no board selected initially
+      const activeBoardObj = board_menu_data.boards_menu.find(b => b.board === renderedBoard);
+      const selectedCard = activeBoardObj.classes.find(item => item.id === card_id);
+
+      // Side Menu Mode logic (Close immediately on click)
+      if (web_para.board_menu_open === "as_side_menu") {
+        web_para.selected_board = selectedCard.value.board;
+        web_para.selected_grade = selectedCard.value.grade;
+        web_para.active_bottom_nav = "bottom_nav_home_button_id";
+        close_board_Menu();
+        move_bottom_nav_active_circle(web_para.active_bottom_nav);
+        return; 
+      }
+
+      // Full Screen Mode logic
+      if (web_para.board_menu_open === "as_full_menu") {
+        // Enforce board selection if none was active
+        if (!current_UI_Board) {
+          show_custom_popupper("Select a Board first!", "#D1B200");
+          //alert("Please select a Board first.");
+          return;
+        }
+
+        current_UI_ClassData = selectedCard.value;
+        has_user_made_changes = true; // Enables submit button
+        
+        render_class_cards(current_UI_Board); // Re-render to show checkmark
+        checkSubmitStatus();
+      }
+    }
+
+    function checkSubmitStatus() {
+      const btn = document.getElementById("submit_btn");
+      if (btn) {
+        if (web_para.board_menu_open === "as_full_menu") {
+          // Enabled only if a selection exists AND the user actually clicked/made changes
+          if (current_UI_ClassData && has_user_made_changes) {
+            btn.disabled = false;
+          } else {
+            btn.disabled = true;
+          }
+        }
+      }
+    }
+
+
+    
+    function initialize_board_menu() {
+      create_board_MenuStructure();
+      preloadAllImages();
+    }
+    // ==========================================
+    
+    
+// BULLETIN PAGE
+function show_bulletin_msg_fc(message) {
+    const bulletinEl = document.getElementById("bulletin_page_id");
+    const bulletin_text_id = document.getElementById("bulletin_text_id");
+    bulletin_text_id.innerText = message;
+    bulletinEl.style.display = "flex";
+    // show_bulletin_msg_fc("Some msg is here."); supabase
+  }
+  
+// Define tracker variables
+const client = supabase.createClient(access_url, sb_key);
+let user_channel = null; 
+let success_icon_id = null;
+
+function manage_supabase_connection() {
+    // Re-grab the element now that the DOM has been painted
+    success_icon_id = document.getElementById('success_icon_id');
+    if (web_para.active_bottom_nav === "bottom_nav_user_button_id" || web_para.ative_realtime !== false) {
+        if (!user_channel) {
+            user_channel = client.channel(target_auth_string);
+            user_channel
+              .on('broadcast', { event: 'data_updated' }, (payload) => {
+                  user_data = payload.payload;
+                  realtime_data_captured_fc();
+              })
+              .subscribe((status, err) => {
+                if (web_para.active_bottom_nav !== "bottom_nav_user_button_id"){
+                  return;
+                }
+                switch (status) {
+                  case 'SUBSCRIBED':
+                    success_icon_startWave();
+                    break;
+                  case 'CLOSED':
+                    success_icon_stopWave();
+                    break;
+                  case 'CHANNEL_ERROR':
+                    if (success_icon_id) success_icon_id.style.backgroundColor = '#C0C0C0';
+                    success_icon_stopWave();
+                    break;
+                  case 'TIMED_OUT':
+                    success_icon_stopWave();
+                    break;
+                }
+              });
+        } else {
+          if (web_para.active_bottom_nav === "bottom_nav_user_button_id"){
+            success_icon_startWave();
+          }
+        }
+    } else {
+        if (user_channel) {
+            client.removeChannel(user_channel); 
+            user_channel = null;
+            if (web_para.active_bottom_nav === "bottom_nav_user_button_id"){
+              success_icon_stopWave();
+              return;
+            }
+        }
+    }
+}
+function realtime_data_captured_fc(){
+  if (user_data.supa.update_type === "eze_para_update"){
+    eze_para_updated_fc();}
+  if (user_data.supa.update_type === "req_unlock_suject"){
+    on_unlock_suject();}
+}
+
+function eze_para_updated_fc(){
+  web_para.ative_realtime = false;
+  manage_supabase_connection();
+  web_para.selected_board = user_data.eze_para.selected_board;
+  web_para.selected_grade = user_data.eze_para.selected_grade;
+  remove_data_action_skeleton_fc()
+  close_board_Menu();
+  render_home_content_by_nav(web_para.active_bottom_nav);
+  
+}
+function on_unlock_suject(){
+  //console.log(user_data)
+  remove_data_action_skeleton_fc()
+  open_subj_fc(web_para.ative_realtime);
+  show_custom_popupper("Unlocked !", "#64A928");
+  
+  web_para.ative_realtime = false;
+  manage_supabase_connection();
+}
+
+
+    async function onload_fetch_user_data() {
+      const eze_get_data_api = 'https://ozxvulrbqxkvivvvupsn.supabase.co/functions/v1/eze_get_data_api';
+      
+      try {
+        const response = await fetch(eze_get_data_api, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sb_key}`
+          },
+          body: JSON.stringify({ user_id: target_auth_string})
+        });
+        if (!response.ok) {
+          throw new Error(`back-end error!`);
+        }
+        
+        const user_data_json = await response.json();
+        if (Object.keys(user_data_json).length > 0) {
+          user_data = user_data_json;
+          
+          if (user_data?.eze_para?.selected_board && user_data?.eze_para?.selected_grade) {
+            web_para.selected_board = user_data.eze_para.selected_board;
+            web_para.selected_grade = user_data.eze_para.selected_grade;
+            // REMOVE LOADING SKELETON
+            render_home_content_by_nav(web_para.active_bottom_nav);
+            remove_load_skeleton_fc();
+          } else {
+            open_board_FullScreen();
+            setTimeout(remove_load_skeleton_fc, 1000);
+          }
+          
+          
+        }else{
+          show_bulletin_msg_fc("Something went wrong!");
+        }
+      } catch (error) {
+        show_bulletin_msg_fc("Something went wrong!");
+      }}
+      
+    // Disable Right-Click menu
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Disable text/content selection highlighting
+    document.addEventListener("selectstart", e => e.preventDefault());
+
+    // Disable dragging elements
+    document.addEventListener('dragstart', event => event.preventDefault());
+
+    // Intercept and block developer/copy keyboard shortcuts
+    document.addEventListener("keydown", e => {
+      const k = e.key.toLowerCase();
+      const ctrlOrMeta = e.ctrlKey || e.metaKey; 
+      
+      if (
+        (ctrlOrMeta && ["c", "x", "v", "s", "u", "a", "p"].includes(k)) || 
+        k === "f12" || 
+        (ctrlOrMeta && e.shiftKey && ["i", "j", "c", "r"].includes(k))
+      ) {
+        e.preventDefault();
+        if(k === 'p') {
+          show_custom_popup("Printing is disabled.");
+        }
+      }
+    });
+
+
+function render_home_content_by_nav(nav_botton_id) {
+  if (nav_botton_id == "bottom_nav_home_button_id"){
+    render_home_content();
+  } else if (nav_botton_id == "bottom_nav_myunlocks_button_id"){
+    render_unlocked_content();
+  }else if (nav_botton_id == "bottom_nav_offerpage_button_id"){
+    render_offerpage_content();
+  }else if (nav_botton_id == "bottom_nav_user_button_id"){
+    usr_info_tab_fc();
+  }else if (nav_botton_id == "close_openasPdf_container"){
+    close_show_notes_img_container();
+  }
+  // Tell Supabase to either connect OR disconnect based on the new tab!
+    // (We wrap it in a setTimeout to ensure the HTML has finished rendering first)
+    setTimeout(() => {
+        if (typeof manage_supabase_connection === "function") {
+            manage_supabase_connection();
+        }
+    }, 0);
+}
+function run_on_load_html_fc() {
+    header_main_type_effect_fc();
+    // BOARD MENU
+    initialize_board_menu();
+    // INITIALIZATION FLOTTING NAV
+    build_bottom_nav_fc();
+    
+    // OPEN AS PDF SKELETON 
+    open_as_pdf_child();
+    //get user data
+    onload_fetch_user_data();
+    // REMOVE LOADING SKELETON
+    //remove_load_skeleton_fc();
+    
+  }
+  
+  run_on_load_html_fc();
+  </script>
+</body>
+
+</html>
