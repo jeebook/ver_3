@@ -216,7 +216,7 @@ if (!subject_data) {
           header_area.onclick = function(event) {
             event.stopPropagation(); 
             
-            if (is_subject_unlocked || single_chapter || all_previews){
+            if (is_subject_unlocked || locked_chapters_count === 0) {
               // show processing message pop up
               active_data_action_skeleton_fc("Sending")
               // Send data to webhook
@@ -233,7 +233,8 @@ if (!subject_data) {
         .then(response => {
           remove_data_action_skeleton_fc()
           // Optional: Show a success message or trigger download UI
-          show_custom_popup("Succ: Check in Bot");
+          //show_custom_popup("Succ: Check in Bot");
+          show_custom_popupper("PDF sended in bot", "#64A928");
         })
         .catch(error => {
           remove_data_action_skeleton_fc()
@@ -244,7 +245,8 @@ if (!subject_data) {
         });
       
     } else {
-      show_custom_popup("You can download when all chapters are unlocked");
+      show_custom_popupper("You can download when\nall chapters are unlocked", "#4F46E5");
+      //show_custom_popup("You can download when all chapters are unlocked");
     }
   };
 }
