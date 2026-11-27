@@ -18,14 +18,16 @@ let need_para= {
 
 let subject_data;
 if (subject_item_id.startsWith('njee_')) {
-  subject_data = njee_chapter_data[subject_item_id];
+  //subject_data = njee_chapter_data[subject_item_id];
+  subject_data= null;
 
 // CBSE
 } else if (subject_item_id.startsWith('cbse_')) {
   
       if (subject_item_id.includes("9")){
         if (subject_item_id.includes("cbse_nShort")){
-          subject_data = cbse9_chap_data[subject_item_id];
+          subject_data= null;
+          //subject_data = cbse9_chap_data[subject_item_id];
         }
         if (subject_item_id.includes("cbse_qb")){
           if (subject_item_id.includes("cbse_qb9m")){
@@ -43,12 +45,33 @@ if (subject_item_id.startsWith('njee_')) {
         }
         
       }else if (subject_item_id.includes("10")){
-        subject_data = cbse10_chap_data[subject_item_id];
+        subject_data= null;
+        //subject_data = cbse10_chap_data[subject_item_id];
       }else if (subject_item_id.includes("11")){
-        subject_data = cbse11_chap_data[subject_item_id];
+        //subject_data = cbse11_chap_data[subject_item_id];
+        subject_data= null;
+        if (subject_item_id.includes("n11p")){
+          subject_data = cbse11_chap_data[subject_item_id];
+        }
+      
+      
       }else if (subject_item_id.includes("12")){
         if (subject_item_id.includes("cbse_n")){
-          subject_data = cbse12_chap_data[subject_item_id];
+          subject_data= null;
+          if (subject_item_id.includes("n12p") || subject_item_id.includes("n12c")){
+            subject_data = cbse12_chap_data[subject_item_id];
+          }
+        }else if (subject_item_id.includes("cbse_fs")){
+          subject_data = null;
+          /*need_new = true;
+          need_para.replace = "cbse_n";
+          need_para.replace_by = "cbse_fs";
+          
+          temp_subject_item_id = subject_item_id.replace("cbse_fs", "cbse_n");
+          need_para.data = cbse12_chap_data[temp_subject_item_id];
+          
+          need_para.list_title = need_para.data.list_title.replace("Notes - 12th", "Formula Sheets");
+          need_para.current_price = 69;*/
         }
       } else {
         subject_data = null;
