@@ -50,7 +50,7 @@ if (subject_item_id.startsWith('njee_')) {
       }else if (subject_item_id.includes("11")){
         //subject_data = cbse11_chap_data[subject_item_id];
         subject_data= null;
-        if (subject_item_id.includes("n11p")){
+        if (subject_item_id.includes("n11b")){
           subject_data = cbse11_chap_data[subject_item_id];
         }
       
