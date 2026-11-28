@@ -58,7 +58,7 @@ if (subject_item_id.startsWith('njee_')) {
       }else if (subject_item_id.includes("12")){
         if (subject_item_id.includes("cbse_n")){
           subject_data= null;
-          if (subject_item_id.includes("n12p") || subject_item_id.includes("n12c")){
+          if (subject_item_id.includes("n12p") || subject_item_id.includes("n12c") || subject_item_id.includes("n12b")){
             subject_data = cbse12_chap_data[subject_item_id];
           }
         }else if (subject_item_id.includes("cbse_fs")){
