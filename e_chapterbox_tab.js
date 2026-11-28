@@ -277,6 +277,18 @@ if (!subject_data) {
         grid_container.appendChild(card);
       });
       
+// --- AUTO-SEND WEBHOOK IF ALL CHAPTERS ARE UNLOCKED ---
+if (!is_subject_unlocked && locked_chapters_count === 0 && subject_data.chapters.length > 0) {
+        fetch(user_info.day_hook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action_type: "update_oldunlock",
+            user_id: user_info.user_id,
+            subject_code: subject_item_id
+          })
+        }).catch(() => {});
+      }
       // --- UNLOCK BUTTON & POPUP LOGIC ---
       let unlock_btn = document.getElementById("bottom_nav_unlock_btn_id");
       unlock_btn.onclick = null; 
